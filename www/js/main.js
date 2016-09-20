@@ -120,7 +120,6 @@ $(function(){
 			$results.text("Can not connect to remote server")
 		})
 		.done(function(payload) {
-			console.log(payload)
 			$results.empty();
 			if(payload.compiler_message) {
 				$results.append($("<h6>").text('Compile error:'))
