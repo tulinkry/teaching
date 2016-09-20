@@ -1,0 +1,19 @@
+{block heading}<h1>{$subject|upper}</h1>{/block}
+
+{block navigation}
+		    <li class="active">
+		        <i class="fa fa-edit"></i> {$subject|upper}
+		    </li>
+{/block}
+
+{block content}
+
+<ul class="list-group">
+	<li n:foreach="$menu as $key => $val" n:class="list-group-item">
+		<a href="{$presenter->link($val['route'], $val['parameters'])}">{$key}</a>
+	</li>
+</ul>
+
+
+
+{/block}

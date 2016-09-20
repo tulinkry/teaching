@@ -1,0 +1,7 @@
+app/config/config.local.neon
+log/*
+vendor/*
+temp/cache/*
+composer.lock
+/nbproject/private/
+/nbproject/

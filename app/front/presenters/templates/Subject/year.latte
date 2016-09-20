@@ -1,0 +1,66 @@
+{block heading}<h1>{$subject|upper} {$year} Agenda</h1>{/block}
+
+{block navigation}
+		    <li>
+		        <i class="fa fa-edit"></i> <a href="{link Subject:default, subject => $subject}">{$subject|upper}</a>
+		    </li>
+		    <li class="active">
+		        <i class="fa fa-edit"></i> {$year}
+		    </li>
+{/block}
+
+
+{block content}
+
+<div class="col-lg-6">
+	<h2 id="tutorials">Cvičení</h2>
+	
+	<ul class="list-group">
+	  <li n:foreach="$tutorials as $tutorial" n:class="list-group-item" role="presentation">
+		<a 
+		href="{link Subject:detail, subject => $subject, year => $year, tutorial => $tutorial->id}" 
+		data-id="tutorial-{$iterator->counter}">{$tutorial->name}</a>
+	  </li>
+	</ul>
+</div>
+
+<div class="col-lg-6">
+	<h2 id="tutorials">Informace</h2>
+	
+	<dl>
+		<dt>Začátek semestru</dt>
+		<dd>{$semester->start|date: 'j. n. Y'}</dd>
+		<dt>Konec semestru</dt>
+		<dd>{$semester->end|date: 'j. n. Y'}</dd>
+	</dl>
+</div>
+
+{*
+<div class="display">
+
+	<div n:foreach="$tutorials as $tutorial" 
+		 style="{if !$iterator->first}display: none;{/if}" 
+		 n:class="panel, panel-default" 
+		 role="presentation" 
+		 id="tutorial-{$iterator->counter}">
+		 {dump $tutorial}
+		<div class="panel-body">
+			<a href="{link Subject:detail, subject => $subject, year => $year, tutorial => $tutorial->id}"
+			   class="btn btn-lg btn-primary">Odkaz na {$tutorial->name}</a>
+
+			<h2>Soubory</h2>
+
+			<ul class="list-group">
+				<li class="list-group-item" n:foreach="$tutorial->getAllFiles() as $file">
+					<a href="{link Download!, 'subject' => $subject, 'year' => $year, 'tutorial' => $tutorial->id, 'name' => $file->name}">{$file->name}</a>
+				</li>
+			</ul>
+
+			<div n:class="$tutorial->isReadmeMarkdown() ? 'markdown'" n:if="$tutorial->readme">{$tutorial->readme}</div>
+		</div>
+	</div>
+
+</div>
+*}
+
+{/block}

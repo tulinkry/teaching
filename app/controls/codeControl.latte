@@ -1,0 +1,50 @@
+{snippet}	
+<div class="code-control" data-compiler-options-raw="{$options_raw}">
+	<form>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="link-target" id="{$main->name}">
+				{$main->name}
+				<a n:if="$main->link" href="{$main->link}" title="Download {$main->name}"><span class="glyphicon glyphicon-download"></span></a>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<p>{$main->description}</p>
+			<div class="code main">
+				<textarea class='cpp' data-name="{$main->name}">{$main->code}</textarea>
+			</div>
+		</div>
+	</div>
+
+	{foreach $dependencies as $dependency}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="link-target" id="{$dependency->name}">
+				{$dependency->name}
+				<a n:if="$dependency->link" href="{$dependency->link}" title="Download {$dependency->name}"><span class="glyphicon glyphicon-download"></span></a>
+				</h3>
+			</div>
+			<div class="panel-body">
+				<p>{$dependency->description}</p>
+				<div class="code dependency">
+					<textarea class='cpp' data-name="{$dependency->name}">{$dependency->code}</textarea>
+				</div>
+			</div>
+		</div>
+	{/foreach}
+	<div class="panel panel-default">
+		<div class="panel-heading controls">
+			<a href="#" title="Compile" class="btn btn-default btn-compile">Compile</a>
+			<a href="#" title="Input" class="btn btn-default btn-input">Input</a>
+		</div>
+		<div class="results">
+			<div class="collapse">
+				<div class="panel-body messages">
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+{/snippet}

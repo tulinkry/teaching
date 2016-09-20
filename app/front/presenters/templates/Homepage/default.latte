@@ -1,0 +1,83 @@
+{block heading}<h1>Výuka <small>Kryštof Tulinger</small></h1>{/block}
+
+{block content}
+
+
+<div class="col-lg-6">
+	<div class="row">
+		<h2>Aktuální hodiny <small>2016</small></h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Předmět</th>
+					<th>Den</th>
+					<th>Hodina</th>
+					<th>Učebna</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="{link Subject:year, subject => 'PA1', year => '2015'}">PA1</a></td>
+					<td>Úterý</td>
+					<td>12:30 - 14:15</td>
+					<td>x</td>
+				</tr>
+				<tr>
+					<td><a href="{link Subject:year, subject => 'PA1', year => '2015'}">PA1</a></td>
+					<td>Středa</td>
+					<td>12:30 - 14:15</td>
+					<td>x</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div class="col-lg-6">
+	<h3>Kompilace</h3>
+	<p>Výborně sepsána v <a href="http://vyuka.bernhauer.cz/pa1-clanky/kompilujeme" title="Jak kompilujeme" target="_blank">článku</a> od Davida Bernauera</p>
+	<h3>Spuštění programu</h3>
+	<p>Předpokládejme, že vaše zkompilovaná verze je soubor <code>a.out</code> v aktuálním adresáři</p>
+	<h4>Holé spuštění</h4>
+	<p>
+		<pre><code class="bash">$ ./a.out</code></pre>
+	</p>
+	<h4>Spuštění se souborem na standardním vstupu</h4>
+	<p>
+		<pre><code class="bash"># poslání vstupu přes pipe
+$ cat input.txt | ./a.out
+# poslání vstupu přes přesměrování
+$ ./a.out < input.txt</code></pre>
+	</p>
+	<h4>Spuštění s přesměrováním výstupu do souboru</h4>
+	<p>
+		<pre><code class="bash"># výstup do souboru
+$ ./a.out > output.txt
+# přidání na konec souboru
+$ ./a.out >> output.txt
+# výstup stderr a stdin do souboru
+$ ./a.out > output_err_and_std.txt 2>&1</code></pre>
+	</p>
+	<h4>Spuštění včetně měření času</h4>
+	<p>
+		<pre><code class="bash">$ time ./a.out</code></pre>
+	</p>
+	<h4>Spuštění s <a href="#valgrind-install" data-toggle="collapse" role="button" title="Instalace valgrindu" aria-expanded="false">valgrindem</a></h4>
+	<div id="valgrind-install" class="collapse">
+		<div class="well">
+			<h5>Instalace valgrindu</h5>
+			<pre><code class="bash">$ sudo apt-get install valgrind</code></pre>
+			<pre><code class="bash">$ yum install valgrind</code></pre>
+		</div>
+	</div>
+	<p>
+		<a href="http://valgrind.org/docs/manual/quick-start.html" target="_blank" title="Valgrind">Valgrind</a> je nástroj na kontrolu práce s pamětí. Běh vašeho programu je analyzován a každé podezřelé chování s pamětí (používání 	neinicializovaných proměnných, přístup mimo povolené hranice, ...) je nahlášeno. Nutno podotknout, že i když valgrind nehlásí žádné problémy, tak to <b>neznamená</b>, že váš program je v pořádku. Znamená to pouze, že jste nenalezli vhodná testovací data, která problémy způsobují.
+	</p>
+	<p>
+		<pre><code class="bash">$ valgrind --leak-check=full --show-kinds=all --track-origins=yes ./a.out</code></pre>
+	</p>
+
+</div>
+
+{/block}

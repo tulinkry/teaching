@@ -1,0 +1,67 @@
+{block heading}<h1>Cvičení {$tutorial->id}</h1>{/block}
+
+{block navigation}
+		    <li>
+		        <i class="fa fa-edit"></i> <a href="{link Subject:year, subject => $subject, year => $year}">{$subject|upper}</a>
+		    </li>
+		    <li>
+		        <i class="fa fa-edit"></i> <a href="{link Subject:year, subject => $subject, year => $year}">{$year}</a>
+		    </li>
+		    <li class="active">
+		        <i class="fa fa-edit"></i> {$tutorial->id}
+		    </li>
+{/block}
+
+{block content}
+
+<h2 id="tutorials">Cvičení</h2>
+
+<ul class="nav nav-tabs">
+  <li n:foreach="$tutorials as $tut" {ifCurrent 'Subject:detail', subject => $subject, year => $year, tutorial => $tut->id}class="active"{/ifCurrent} role="presentation">
+	<a href="{link Subject:detail, subject => $subject, year => $year, tutorial => $tut->id}" class="nav-link" data-id="tutorial-{$iterator->counter}">{$tut->name}</a>
+  </li>
+</ul>
+
+{if $tutorial->readme}
+<p n:class="lead, $tutorial->isReadmeMarkdown() ? 'markdown'">{$tutorial->readme}</p>
+<hr />
+{/if}
+
+<h2>Seznam souborů</h2>
+
+<ul class="list-group">
+	<li class="list-group-item" n:foreach="$tutorial->getAllFiles() as $file">
+		<a href="#{$file->name}" title="{$file->name}">{$file->name}</a>
+		<a href="{link Download!, 'subject' => $subject, 'year' => $year, 'tutorial' => $tutorial->id, 'name' => $file->name}" title="Download {$file->name}"><span class="glyphicon glyphicon-download"></span></a>
+	</li>
+</ul>
+
+
+
+
+{if $tutorial->programs}
+<hr />
+
+<h2>Programy</h2>
+
+{foreach $tutorial->programs as $key => $program}
+	<h3>{$program->name}</h3>
+	{control codeControl, $program->main, $program->dependencies}
+{/foreach}
+
+{/if}
+
+
+{if $tutorial->files}
+<hr />
+
+<h2>Soubory</h2>
+
+{foreach $tutorial->files as $file}
+	{control codeControl, $file}
+{/foreach}
+
+{/if}
+
+
+{/block}

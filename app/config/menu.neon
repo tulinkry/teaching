@@ -1,0 +1,30 @@
+parameters:
+	menu:
+		PA2:
+			route: Subject:default
+			parameters:
+				subject: PA2
+			menu:
+				2016:
+					route: Subject:year
+					parameters:
+						year: 2016
+						subject: PA2
+					tutorials:
+						directory: %appDir%/../sources/PA2/2016
+		PA1:
+			route: Subject:default
+			parameters:
+				subject: PA1
+			menu:
+				2015:
+					route: Subject:year
+					parameters:
+						year: 2015
+						subject: PA1
+					tutorials:
+						directory: %appDir%/../sources/PA1/2015
+					semester:
+						start: 2016-10-03
+						end: 2016-12-22
+
