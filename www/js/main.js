@@ -100,7 +100,6 @@ $(function(){
 					.getValue()
 		var deps = findDependencies($control); 
 		var options_raw = $control.data('compiler-options-raw') || ''
-		console.log(code)
 		$.ajax({
 			type: 'POST',
 			url: 'http://melpon.org/wandbox/api/compile.json',
@@ -121,6 +120,7 @@ $(function(){
 			$results.text("Can not connect to remote server")
 		})
 		.done(function(payload) {
+			console.log(payload)
 			$results.empty();
 			if(payload.compiler_message) {
 				$results.append($("<h6>").text('Compile error:'))
@@ -130,9 +130,9 @@ $(function(){
 				}
 				$results.append($text)
 			}
-			if(payload.program_output && payload.program_output.length > 0) {
+			if(payload.program_message && payload.program_message.length > 0) {
 				$results.append($("<h6>").text('Output:'))
-				var $text = $("<pre>").append($("<code>").addClass('nohighlight').text(payload.program_output))
+				var $text = $("<pre>").append($("<code>").addClass('nohighlight').text(payload.program_message))
 				$results.append($text)
 			}
 
