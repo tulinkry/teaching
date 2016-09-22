@@ -1,4 +1,4 @@
-{block heading}<h1>Výuka <small>Kryštof Tulinger</small></h1>{/block}
+{block heading}<h1>Výuka <small>Kryštof Tulinger <small>tulinkry@fit.cvut.cz</small></small></h1>{/block}
 
 {block content}
 
@@ -31,12 +31,65 @@
 			</tbody>
 		</table>
 	</div>
+
+
+	<h3>Kompilace</h3>
+	<p>Výborně sepsána v <a href="http://vyuka.bernhauer.cz/pa1-clanky/kompilujeme" title="Jak kompilujeme" target="_blank">článku</a> od Davida Bernauera</p>
+
+	<h4>O souboru <a href="#gcc-install" data-toggle="collapse" role="button" title="Instalace gcc/g++" aria-expanded="false">gcc/g++</a></h4>
+	<div id="gcc-install" class="collapse">
+		<div class="well">
+			<h5>Instalace gcc/g++</h5>
+			<pre><code class="bash">$ sudo apt-get install gcc</code></pre>
+			<pre><code class="bash">$ sudo apt-get install g++</code></pre>
+			<pre><code class="bash">$ yum install gcc</code></pre>
+			<pre><code class="bash">$ yum install g++</code></pre>
+		</div>
+	</div>
+
+	<p>Používáme binárku <code>gcc</code> nebo <code>g++</code>. Tento soubor má velké množství přepínačů, ze kterých bych pro předměty PA1 nebo PA2 označil následující skupinu jako důležitou:
+
+		<dl>
+			<dt>-o</dt>
+			<dd>Vygenerovat výstup do souboru. Pokud neuvedete tento přepínač, kód se vždy kompiluje do souboru <code>a.out</code></dd>
+			<dt>-Wall</dt>
+			<dd>Zapne všechny upozornění (v překladu Warning = all)</dd>
+			<dt>-pedantic</dt>
+			<dd>Kompilátor hodností přísněji váš kód - hlásí nepoužité proměnné aj.</dd>
+			<dt>-l&lt;library&gt;</dt>
+			<dd>Přilinkuje žádanou knihovnu (malé L)</dd>
+			<dt>-I&lt;path&gt;</dt>
+			<dd>Přidá cestu mezi seznam adresářů, kde se vyhledávají hlavičkové soubory (velké i)</dd>
+			<dt>-MM</dt>
+			<dd>Kompilátor vygeneruje seznam závislostí - vhodné do makefile</dd>
+			<dt>-S</dt>
+			<dd>Zajímavost - vygeneruje asembler kód</dd>
+		</dl>
+
+		Více informací viz:
+		<pre><code class="bash">$ man gcc
+$ man g++
+$ gcc --help
+$ g++ --help</code></pre>
+	</p>
+
+	<h4>Vstupní soubory</h4>
+
+	<p>Uvedenému příkazu lze následně předhodit libovolné množství souborů pro kompilaci, tedy například:
+		<pre><code class="bash">$ gcc -Wall -pedantic main.cpp utils.cpp</code></pre>
+		a kompilátor, pokud je to možné, složí výsledný program.
+	</p>
+
+	<h4>Návratová hodnota</h4>
+
+	<p>Návratová hodnota kompilátoru je <code>0</code> při úspěšné kompilaci a různá od <code>0</code> při neúspěchu. Toho se dá vhodně využít například pro překlad a spuštění:
+	<pre><code class="bash">$ gcc -o main && ./main</code></pre>
+	</p>
+
 </div>
 
 
 <div class="col-lg-6">
-	<h3>Kompilace</h3>
-	<p>Výborně sepsána v <a href="http://vyuka.bernhauer.cz/pa1-clanky/kompilujeme" title="Jak kompilujeme" target="_blank">článku</a> od Davida Bernauera</p>
 	<h3>Spuštění programu</h3>
 	<p>Předpokládejme, že vaše zkompilovaná verze je soubor <code>a.out</code> v aktuálním adresáři</p>
 	<h4>Holé spuštění</h4>
@@ -72,7 +125,7 @@ $ ./a.out > output_err_and_std.txt 2>&1</code></pre>
 		</div>
 	</div>
 	<p>
-		<a href="http://valgrind.org/docs/manual/quick-start.html" target="_blank" title="Valgrind">Valgrind</a> je nástroj na kontrolu práce s pamětí. Běh vašeho programu je analyzován a každé podezřelé chování s pamětí (používání 	neinicializovaných proměnných, přístup mimo povolené hranice, ...) je nahlášeno. Nutno podotknout, že i když valgrind nehlásí žádné problémy, tak to <b>neznamená</b>, že váš program je v pořádku. Znamená to pouze, že jste nenalezli vhodná testovací data, která problémy způsobují.
+		<a href="http://valgrind.org/docs/manual/quick-start.html" target="_blank" title="Valgrind">Valgrind</a> je nástroj na kontrolu práce s pamětí. Běh vašeho programu je analyzován a každé podezřelé chování s pamětí (používání 	neinicializovaných proměnných, přístup mimo povolené hranice, ...) je nahlášeno. Nutno podotknout, že i když valgrind nehlásí žádné problémy, tak to <b>neznamená</b>, že váš program je v pořádku. Znamená to pouze, že váš program správně pracuje s pamětí pro testovací data, která jste mu poskytli.
 	</p>
 	<p>
 		<pre><code class="bash">$ valgrind --leak-check=full --show-kinds=all --track-origins=yes ./a.out</code></pre>
