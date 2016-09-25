@@ -86,8 +86,7 @@
 	{/block}
 
 	<nav class="navbar navbar-default navbar-fixed-bottom copyright">
-	  <div class="container text-center">
-	  </div>
+	  <div class="container text-center"{if isset($lastUpdated) && $lastUpdated} title="Naposledy upraveno {$lastUpdated|date: 'j. n. Y H:i:s'}"{/if}>Kryštof Tulinger &copy; 2016</div>
 	</nav>
 
 
