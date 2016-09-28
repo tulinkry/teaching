@@ -23,7 +23,7 @@ class BasePresenter extends Tulinkry\Application\UI\Presenter
 		if(file_exists($timestamp)) {
 			FileSystem::delete($timestamp);
 		}
-		FileSystem::write($timestamp);
+		FileSystem::write($timestamp, "");
 	}
 
 	protected function createComponentCodeControl ($name) {
