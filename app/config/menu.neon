@@ -26,5 +26,5 @@ parameters:
 						directory: %appDir%/../sources/PA1/2016
 					semester:
 						start: 2016-10-03
-						end: 2016-12-22
+						end: 2017-01-08
 
