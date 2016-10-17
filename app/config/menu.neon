@@ -17,13 +17,13 @@ parameters:
 			parameters:
 				subject: PA1
 			menu:
-				2015:
+				2016:
 					route: Subject:year
 					parameters:
-						year: 2015
+						year: 2016
 						subject: PA1
 					tutorials:
-						directory: %appDir%/../sources/PA1/2015
+						directory: %appDir%/../sources/PA1/2016
 					semester:
 						start: 2016-10-03
 						end: 2016-12-22
