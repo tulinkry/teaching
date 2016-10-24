@@ -71,6 +71,7 @@
 			<div class="col-lg-12">
 				<div class="panel panel-default panel-content">
 					<div class="panel-heading">
+						<small n:if="isset($lastUpdated) && $lastUpdated" class="pull-right">Naposledy upraveno {$lastUpdated|date: 'j. n. Y H:i:s'}</small>
 						{block heading}
 						<h1>
 						</h1>
