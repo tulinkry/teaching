@@ -80,14 +80,14 @@ $ g++ --help</code></pre>
 	<h4>Vstupní soubory</h4>
 
 	<p>Uvedenému příkazu lze následně předhodit libovolné množství souborů pro kompilaci, tedy například:
-		<pre><code class="bash">$ gcc -Wall -pedantic main.cpp utils.cpp</code></pre>
+		<pre><code class="bash">$ gcc -Wall -pedantic main.c utils.c</code></pre>
 		a kompilátor, pokud je to možné, složí výsledný program.
 	</p>
 
 	<h4>Návratová hodnota</h4>
 
 	<p>Návratová hodnota kompilátoru je <code>0</code> při úspěšné kompilaci a různá od <code>0</code> při neúspěchu. Toho se dá vhodně využít například pro překlad a spuštění:
-	<pre><code class="bash">$ gcc -o main && ./main</code></pre>
+	<pre><code class="bash">$ gcc main.c -o main && ./main</code></pre>
 	</p>
 
 </div>
@@ -135,6 +135,44 @@ $ ./a.out > output_err_and_std.txt 2>&1</code></pre>
 		<pre><code class="bash">$ valgrind --leak-check=full --show-kinds=all --track-origins=yes ./a.out</code></pre>
 	</p>
 
+
+	<h3>Vstupy ze souboru</h3>
+	<p>Předpokládejme, že vaše zkompilovaná verze je soubor <code>a.out</code> v aktuálním adresáři</p>
+	<h4>Předání vstupu z příkazu echo</h4>
+	<p>
+		<pre><code class="bash">$ echo "vstup" | ./a.out</code></pre>
+	</p>
+	<h4>Předání vstupu ze souboru</h4>
+	<p>
+		<pre><code class="bash">$ ./a.out < input.txt</code></pre>
+	</p>
+	<h4>Předání vstupu ze souboru po řádkách</h4>
+	<p>Nefunguje, pokud je na jedné řádce více informací oddělených bílými znaky - váš program se spustí pro každou takovou informaci (ne pro celou řádku).</p>
+	<p>
+		<pre><code class="bash">$ for line in $(cat input.txt); do echo "$line" | ./a.out; done</code></pre>
+	</p>
+	<h4>Předání vstupu ze souboru po řádkách</h4>
+	<p>Funguje vždy (i na problém v předchozím případě), tentokrát správně interpretuje řádky s více informacemi</p>
+	<p>
+		<pre><code class="bash">$ while read -r line; do echo "$line" | ./a.out; done < input.txt</code></pre>
+	</p>
+	<h4>Předání výstupu programu</h4>
+	<p>
+		<pre><code class="bash"># výstup do souboru
+$ ./a.out > output.txt
+# přidání na konec souboru
+$ ./a.out >> output.txt
+# výstup stderr a stdin do souboru
+$ ./a.out > output_err_and_std.txt 2>&1</code></pre>
+	</p>
+	<h4>Vhodné spuštění pro testování</h4>
+	<p>
+		<pre><code class="bash">$ [ -f output.txt ] && rm output.txt; \
+while read -r line; \
+	do echo "$line" | ./a.out >> output.txt; \
+done < input.txt; \
+diff output.txt ref-output.txt</code></pre>
+	</p>
 </div>
 
 {/block}
