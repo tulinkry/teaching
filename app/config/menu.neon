@@ -5,20 +5,23 @@ parameters:
 			parameters:
 				subject: PA2
 			menu:
-				2016:
+				2017_CT_11_00:
 					route: Subject:year
 					parameters:
-						year: 2016
+						year: 2017_CT_11_00
 						subject: PA2
 					tutorials:
-						directory: %appDir%/../sources/PA2/2016
-				2017:
+						directory: %appDir%/../sources/PA2/2017/11_00
+					semester:
+						start: 2017-02-20
+						end: 2017-05-12
+				2017_CT_12_45:
 					route: Subject:year
 					parameters:
-						year: 2017
+						year: 2017_CT_12_45
 						subject: PA2
 					tutorials:
-						directory: %appDir%/../sources/PA2/2017
+						directory: %appDir%/../sources/PA2/2017/12_45
 					semester:
 						start: 2017-02-20
 						end: 2017-05-12
