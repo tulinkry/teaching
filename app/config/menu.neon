@@ -12,6 +12,16 @@ parameters:
 						subject: PA2
 					tutorials:
 						directory: %appDir%/../sources/PA2/2016
+				2017:
+					route: Subject:year
+					parameters:
+						year: 2017
+						subject: PA2
+					tutorials:
+						directory: %appDir%/../sources/PA2/2017
+					semester:
+						start: 2017-02-20
+						end: 2017-05-12
 		PA1:
 			route: Subject:default
 			parameters:
