@@ -10,7 +10,7 @@
 
 <ul class="list-group">
 	<li n:foreach="$menu as $key => $val" n:class="list-group-item">
-		<a href="{$presenter->link($val['route'], $val['parameters'])}">{$key}</a>
+		<a href="{$presenter->link($val['route'], $val['parameters'])}">{ifset $val['name']}{$val['name']}{else}{$key}{/ifset}</a>
 	</li>
 </ul>
 

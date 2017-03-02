@@ -6,6 +6,7 @@ parameters:
 				subject: PA2
 			menu:
 				2017_CT_11_00:
+					name: "2017 - Čtvrtek - 11:00"
 					route: Subject:year
 					parameters:
 						year: 2017_CT_11_00
@@ -16,6 +17,7 @@ parameters:
 						start: 2017-02-20
 						end: 2017-05-12
 				2017_CT_12_45:
+					name: "2017 - Čtvrtek - 12:45"
 					route: Subject:year
 					parameters:
 						year: 2017_CT_12_45
